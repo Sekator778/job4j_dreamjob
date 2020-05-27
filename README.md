@@ -1,3 +1,15 @@
 # job4j_dreamjob
 
-new project
+
+my DreamJob
+
+                |
+                |
+               \|/
+                |
+
+
+
+![icon][done]
+
+[done]:11.jpg
