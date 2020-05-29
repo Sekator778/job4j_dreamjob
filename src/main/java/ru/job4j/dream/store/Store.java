@@ -6,17 +6,19 @@ import ru.job4j.dream.model.Post;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- *  хранилище Store. Оно будет синглтон
+ * хранилище Store. Оно будет синглтон
  */
 public class Store {
-
+    /**
+     * ключ для генерации ID
+     */
+    private static AtomicInteger POST_ID = new AtomicInteger(4);
     private static final Store INST = new Store();
-
-    private Map<Integer, Post> posts = new ConcurrentHashMap<>();
-
-    private Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
+    private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
+    private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     private Store() {
         posts.put(1, new Post(1, "Junior Java Job", "descr_1", "21/01/1990"));
@@ -37,5 +39,13 @@ public class Store {
 
     public Collection<Candidate> findAllCandidates() {
         return candidates.values();
+    }
+
+    /**
+     * метод добавления
+     */
+    public void save(Post post) {
+        post.setId(POST_ID.incrementAndGet());
+        posts.put(post.getId(), post);
     }
 }
