@@ -46,9 +46,9 @@
             </div>
         </div>
     </div>
+    <p>
+        <a href="<%=request.getContextPath()%>/index.jsp">Home</a>
+    </p>
 </div>
-<p>
-    <a href="<%=request.getContextPath()%>/index.jsp">Home</a>
-</p>
 </body>
 </html>
