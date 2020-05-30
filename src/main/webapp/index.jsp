@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.store.Store" %>
 <%@ page import="ru.job4j.dream.model.Post" %>
+<%@ page import="ru.job4j.dream.model.Candidate" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,8 +47,25 @@
             <div class="card-header">
                 Сегодняшние вакансии.
             </div>
+
+            <%--                output posts--%>
             <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Названия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (Post post : Store.instOf().findAllPosts()) { %>
+                    <tr>
+                        <td><%= post.getName() %></td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </div>
     <div class="row pt-3">
@@ -55,7 +73,25 @@
             <div class="card-header">
                 Сегодняшние кандидаты.
             </div>
+<%--            output candidates--%>
             <div class="card-body">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Названия</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for (Candidate candidate : Store.instOf().findAllCandidates()) { %>
+                        <tr>
+                            <td><%= candidate.getName() %></td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
