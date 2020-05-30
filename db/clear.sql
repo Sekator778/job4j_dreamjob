@@ -1,0 +1,2 @@
+TRUNCATE post;
+TRUNCATE candidates;

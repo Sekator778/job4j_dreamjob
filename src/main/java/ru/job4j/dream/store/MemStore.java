@@ -22,9 +22,9 @@ public class MemStore implements Store{
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     private MemStore() {
-        posts.put(1, new Post(1, "Junior Java Job", "descr_1", "21/01/1990"));
-        posts.put(2, new Post(2, "Middle Java Job", "descr_2", "01/11/1998"));
-        posts.put(3, new Post(3, "Senior Java Job", "descr_3", "11/10/1990"));
+        posts.put(1, new Post(1, "Junior Java Job"));
+        posts.put(2, new Post(2, "Middle Java Job"));
+        posts.put(3, new Post(3, "Senior Java Job"));
         candidates.put(1, new Candidate(1, "Junior Java candidate"));
         candidates.put(2, new Candidate(2, "Middle Java candidate"));
         candidates.put(3, new Candidate(3, "Senior Java candidate"));
@@ -75,10 +75,5 @@ public class MemStore implements Store{
      */
     public Candidate findByIdCandidate(int id) {
         return candidates.get(id);
-    }
-
-    @Override
-    public void update(Post post) {
-        ////////
     }
 }

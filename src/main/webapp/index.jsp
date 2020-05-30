@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Post" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
+<%@ page import="ru.job4j.dream.store.PsqlStore" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -57,7 +57,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Post post : MemStore.instOf().findAllPosts()) { %>
+                    <% for (Post post : PsqlStore.instOf().findAllPosts()) { %>
                     <tr>
                         <td><%= post.getName() %></td>
                     </tr>
@@ -83,7 +83,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <% for (Candidate candidate : MemStore.instOf().findAllCandidates()) { %>
+                        <% for (Candidate candidate : PsqlStore.instOf().findAllCandidates()) { %>
                         <tr>
                             <td><%= candidate.getName() %></td>
                         </tr>

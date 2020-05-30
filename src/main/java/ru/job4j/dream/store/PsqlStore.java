@@ -93,6 +93,15 @@ public class PsqlStore implements Store {
         }
     }
 
+    @Override
+    public void save(Candidate candidate) {
+        if (candidate.getId() == 0) {
+            create(candidate);
+        } else {
+            update(candidate);
+        }
+    }
+
     private Post create(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("INSERT INTO post(name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
@@ -110,12 +119,41 @@ public class PsqlStore implements Store {
         return post;
     }
 
-    public void update(Post post) {
+    private Candidate create(Candidate candidate) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("INSERT INTO candidates(name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, candidate.getName());
+            ps.execute();
+            try (ResultSet id = ps.getGeneratedKeys()) {
+                if (id.next()) {
+                    candidate.setId(id.getInt(1));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return candidate;
+    }
+
+    private void update(Post post) {
         try (Connection conn = pool.getConnection();
              PreparedStatement st = conn.prepareStatement("update post set name = ? where id = ?")
         ) {
             st.setString(1, post.getName());
             st.setInt(2, post.getId());
+            st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void update(Candidate candidate) {
+        try (Connection conn = pool.getConnection();
+             PreparedStatement st = conn.prepareStatement("update candidates set name = ? where id = ?")
+        ) {
+            st.setString(1, candidate.getName());
+            st.setInt(2, candidate.getId());
             st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,6 +185,38 @@ public class PsqlStore implements Store {
                 Post post = new Post(0, name);
                 post.setId(id);
                 result.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public Candidate findByIdCandidate(int id) {
+        Candidate candidate = null;
+        try (Connection connection = pool.getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT candidates.id, candidates.name from candidates WHERE id = ?")) {
+            statement.setInt(1, id);
+            List<Candidate> rsl = findSetCandidate(statement);
+            if (!rsl.isEmpty()) {
+                candidate = rsl.get(0);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return candidate;
+    }
+
+    private List<Candidate> findSetCandidate(PreparedStatement statement) {
+        List<Candidate> result = new ArrayList<>();
+        try (ResultSet set = statement.executeQuery()) {
+            while (set.next()) {
+                int id = set.getInt(1);
+                String name = set.getString(2);
+                Candidate candidate = new Candidate(0, name);
+                candidate.setId(id);
+                result.add(candidate);
             }
         } catch (SQLException e) {
             e.printStackTrace();
