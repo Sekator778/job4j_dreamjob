@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.Store" %>
-<%@ page import="ru.job4j.dream.model.Candidate" %>
-<%@ page import="java.util.Collection" %>
-<%@ page import="ru.job4j.dream.model.Post" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,16 +39,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Candidate can : (Collection<Candidate>) request.getAttribute("candidates")) { %>
-                    <tr>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/candidate/edit.jsp?id=<%=can.getId()%>">
-                                <i class="fa fa-edit mr-3"></i>
-                            </a>
-                            <%= can.getName() %>
-                        </td>
-                    </tr>
-                    <% } %>
+                    <c:forEach items="${candidates}" var="candidate">
+                        <tr>
+                            <td>
+                                <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
+                                    <i class="fa fa-edit mr-3"></i>
+                                </a>
+                                <c:out value="${candidate.name}"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
