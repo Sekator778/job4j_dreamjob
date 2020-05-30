@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.Store" %>
+<%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page import="ru.job4j.dream.model.Post" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <!doctype html>
@@ -57,7 +57,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Post post : Store.instOf().findAllPosts()) { %>
+                    <% for (Post post : MemStore.instOf().findAllPosts()) { %>
                     <tr>
                         <td><%= post.getName() %></td>
                     </tr>
@@ -83,7 +83,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <% for (Candidate candidate : Store.instOf().findAllCandidates()) { %>
+                        <% for (Candidate candidate : MemStore.instOf().findAllCandidates()) { %>
                         <tr>
                             <td><%= candidate.getName() %></td>
                         </tr>
