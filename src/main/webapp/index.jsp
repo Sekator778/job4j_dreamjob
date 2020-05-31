@@ -26,6 +26,11 @@
 </head>
 <body>
 <div class="container">
+<p class="nav-item">
+    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
+</p>
+</div>
+<div class="container">
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
