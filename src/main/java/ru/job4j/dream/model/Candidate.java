@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Candidate {
     private int id;
     private String name;
-    private int photoId;
+    public int photoId;
 
     public Candidate(int id, String name) {
         this.id = id;
@@ -35,6 +35,10 @@ public class Candidate {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPhotoId() {
+        return photoId;
     }
 
     @Override

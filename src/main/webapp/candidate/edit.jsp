@@ -49,7 +49,7 @@
                         <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <td><a href="<c:url value='/download?name=${image}'/>">Download Photo</a></td>
+                    <td><a href="<c:url value='/download?id=${candidate.getPhotoId}'/>">Download Photo</a></td>
                 </form>
             </div>
         </div>
