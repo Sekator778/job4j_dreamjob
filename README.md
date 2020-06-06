@@ -10,5 +10,5 @@ my DreamJob
                 |
 
 <p></p>
-<img src="11.jpg">
+<img src="11.jpg" width="400px" height="600px">
 <p></p>
