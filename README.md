@@ -12,6 +12,3 @@ my DreamJob
 <p></p>
 <img src="11.jpg">
 <p></p>
-![icon][done]
-
-[done]:11.jpg
