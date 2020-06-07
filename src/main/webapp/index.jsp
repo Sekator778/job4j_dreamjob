@@ -2,6 +2,8 @@
 <%@ page import="ru.job4j.dream.model.Post" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="ru.job4j.dream.store.PsqlStore" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,29 +25,45 @@
             crossorigin="anonymous"></script>
 
     <title>Работа мечты</title>
+    <style type="text/css">
+        #header {
+            height: 80px; /* Высота слоя */
+            background: #FEDFC0;
+            border-bottom: 2px solid #7B5427;
+        }
+
+        #header {
+            padding: 20px;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-<p class="nav-item">
-    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
-</p>
-</div>
-<div class="container">
-    <div class="row">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate.do">Кандидаты</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
-            </li>
-        </ul>
+    <div id="header">
+        <div class="row">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> |
+                        Выйти</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="row">
         <div class="card" style="width: 100%">
@@ -64,7 +82,8 @@
                     <tbody>
                     <% for (Post post : PsqlStore.instOf().findAllPosts()) { %>
                     <tr>
-                        <td><%= post.getName() %></td>
+                        <td><%= post.getName() %>
+                        </td>
                     </tr>
                     <% } %>
                     </tbody>
@@ -78,7 +97,7 @@
             <div class="card-header">
                 Сегодняшние кандидаты.
             </div>
-<%--            output candidates--%>
+            <%--            output candidates--%>
             <div class="card-body">
                 <div class="card-body">
                     <table class="table">
@@ -90,7 +109,8 @@
                         <tbody>
                         <% for (Candidate candidate : PsqlStore.instOf().findAllCandidates()) { %>
                         <tr>
-                            <td><%= candidate.getName() %></td>
+                            <td><%= candidate.getName() %>
+                            </td>
                         </tr>
                         <% } %>
                         </tbody>

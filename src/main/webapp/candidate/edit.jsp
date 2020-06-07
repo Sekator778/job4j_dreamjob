@@ -51,7 +51,7 @@
                 <% } %>
             </div>
             <div class="card-body">
-                <form action="<%=request.getContextPath()%>/candidate.do" method="post"
+                <form action="<%=request.getContextPath()%>/candidates.do" method="post"
                       enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Имя</label>

@@ -20,7 +20,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CandidateServlet</servlet-name>
-        <url-pattern>/candidate.do</url-pattern>
+        <url-pattern>/candidates.do</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -40,6 +40,16 @@
     <servlet-mapping>
         <servlet-name>UploadServlet</servlet-name>
         <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>ru.job4j.dream.servlet.DeleteServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>

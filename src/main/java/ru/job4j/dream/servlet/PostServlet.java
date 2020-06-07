@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PostServlet extends HttpServlet {
 
@@ -23,9 +24,10 @@ public class PostServlet extends HttpServlet {
         resp.sendRedirect(req.getContextPath() + "/posts.do");
     }
 
-        @Override
-        protected void doGet (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            req.setAttribute("posts", PsqlStore.instOf().findAllPosts());
-            req.getRequestDispatcher("/post/posts.jsp").forward(req, resp);
-        }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("posts", new ArrayList<>(PsqlStore.instOf().findAllPosts()));
+        req.setAttribute("user", req.getSession().getAttribute("user"));
+        req.getRequestDispatcher("/post/posts.jsp").forward(req, resp);
+    }
 }

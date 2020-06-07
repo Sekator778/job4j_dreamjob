@@ -117,6 +117,7 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(candidates.toString());
         return candidates;
     }
 
@@ -255,7 +256,7 @@ public class PsqlStore implements Store {
     public void deleteCandidate(int id) {
         try (Connection con = pool.getConnection();
              PreparedStatement ps = con.prepareStatement(
-                     "DELETE from candidate where id=" + id)) {
+                     "DELETE from candidate where id =" + id)) {
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

@@ -22,12 +22,23 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Работа мечты</title>
+    <style type="text/css">
+        #header {
+            height: 80px; /* Высота слоя */
+            background: #FEDFC0; border-bottom: 2px solid #7B5427;
+        }
+        #header { padding: 20px; margin: 0; }
+    </style>
 </head>
 <body>
 <div class="container pt-3">
 
     <div class="row">
         <div class="card" style="width: 100%">
+            <div id="header">
+                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> |
+                    Выйти</a>
+            </div>
             <div class="card-header">
                 Кандидаты
             </div>
