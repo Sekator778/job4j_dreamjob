@@ -1,11 +1,20 @@
-CREATE TABLE post
+CREATE TABLE if not exists post
 (
     id   SERIAL PRIMARY KEY,
     name TEXT
 );
 
-CREATE TABLE candidates
+CREATE TABLE if not exists candidate
 (
-    id   SERIAL PRIMARY KEY,
-    name TEXT
+    id      SERIAL PRIMARY KEY,
+    name    TEXT,
+    photoId text
+);
+
+create table if not exists users
+(
+    id       serial primary key,
+    name     text unique,
+    email    text,
+    password text
 );

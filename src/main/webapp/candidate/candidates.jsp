@@ -36,6 +36,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Названия</th>
+                        <th scope="col">Фото</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,7 +49,17 @@
                                 <c:out value="${candidate.name}"/>
                             </td>
                             <td>
-                                <img src="<c:url value='/download?name=${candidate.name}'/>" width="100px" height="100px"/>
+                                <img src="<c:url value='/download?name=${candidate.photoId}'/>" width="100px"
+                                     height="100px"/>
+                                <br>
+                                <c:out value="${candidate.photoId}"/>
+                                <br>
+                                <a href='<c:url value="/download?name=${candidate.photoId}"/>'>
+                                    Download
+                                </a>
+                                <a href='<c:url value="/delete?name=${candidate.id}"/>'>
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

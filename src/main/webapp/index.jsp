@@ -100,9 +100,6 @@
             </div>
         </div>
     </div>
-    <li class="nav-item">
-        <a class="nav-link" href="upload.jsp">Загрузка</a>
-    </li>
 </div>
 </body>
 </html>

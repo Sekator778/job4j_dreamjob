@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="ru.job4j.dream.store.PsqlStore" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,15 +20,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<%--    проверка на корректность ввода--%>
+    <script>
+        function validate() {
+            var name = $('#name').val();
+            if (name == '') {
+                alert($('#name').attr('placeholder'));
+            }
+        }
+    </script>
     <title>Работа мечты</title>
 </head>
 <body>
 <%
     String id = request.getParameter("id");
-    Candidate candidate = new Candidate(0, "");
+    Candidate candidate = new Candidate(0, "", "");
     if (id != null) {
-        candidate = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(id));
+        candidate = PsqlStore.instOf().findByIdCandidate(Integer.valueOf(id));
     }
 %>
 <div class="container pt-3">
@@ -39,24 +47,26 @@
                 <% if (id == null) { %>
                 Новый кандидат.
                 <% } else { %>
-                Редактирование кандидатуры.
+                Редактирование кандидата.
                 <% } %>
             </div>
             <div class="card-body">
-                <form action="<%=request.getContextPath()%>/candidate.do?id=<%=candidate.getId()%>" method="post">
+                <form action="<%=request.getContextPath()%>/candidate.do" method="post"
+                      enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter name"
+                               value="<%=candidate.getName()%>">
                     </div>
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <td><a href="<c:url value='/download?id=${candidate.getPhotoId}'/>">Download Photo</a></td>
+                    <div class="form-group">
+                        <label>Фото</label>
+                        <input type="file" class="checkbox" name="photoId" value="<%=candidate.getPhotoId()%>">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="validate();">Сохранить</button>
                 </form>
             </div>
         </div>
     </div>
-    <p>
-        <a href="<%=request.getContextPath()%>/index.jsp">Home</a>
-    </p>
 </div>
 </body>
 </html>
