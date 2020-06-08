@@ -8,21 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("candidates", PsqlStore.instOf().findAllCandidates());
+        req.setAttribute("store", PsqlStore.instOf().findAllCandidates());
         System.out.println("doGet delete servlet: ");
-        req.getRequestDispatcher("candidate/deleteCandidate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/candidate/deleteCandidate.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         System.out.println("doPost deleteServlet");
-        int id = Integer.parseInt(req.getParameter("name"));
+        int id = Integer.parseInt(req.getParameter("id"));
         System.out.println(id);
         File file = new File("images");
         String imageName = PsqlStore.instOf().findByIdCandidate(id).getPhotoId();

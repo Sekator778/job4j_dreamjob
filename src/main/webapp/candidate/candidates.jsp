@@ -68,7 +68,7 @@
                                 <a href='<c:url value="/download?name=${candidate.photoId}"/>'>
                                     Download
                                 </a>
-                                <a href='<c:url value="/delete?name=${candidate.id}"/>'>
+                                <a href='<c:url value="/delete?id=${candidate.id}"/>'>
                                     Delete
                                 </a>
                             </td>

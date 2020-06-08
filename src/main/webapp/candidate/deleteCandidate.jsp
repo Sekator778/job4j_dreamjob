@@ -25,8 +25,8 @@
     <h3>Delete this User</h3>
 </center>
 <body>
-<c:forEach items="${candidates}" var="candidate">
-<form action='<c:url value="/delete?name=${candidate.id}"/>' method="post">
+<c:forEach items="${store}" var="candidate">
+<form action='<c:url value="/delete?id=${candidate.id}"/>' method="post">
     <div class="card-body">
         <table class="table">
             <thead>
