@@ -23,9 +23,9 @@
 </head>
 <center>
     <h3>Delete this User</h3>
+    <h4>Are you sure click delete</h4>
 </center>
 <body>
-<c:forEach items="${store}" var="candidate">
 <form action='<c:url value="/delete?id=${candidate.id}"/>' method="post">
     <div class="card-body">
         <table class="table">
@@ -48,7 +48,6 @@
         </table>
     </div>
     <button type="submit" class="btn btn-default">Delete</button>
-    </c:forEach>
 </form>
 </body>
 </html>
