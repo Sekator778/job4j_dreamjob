@@ -18,9 +18,7 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("method doget DeleteServlet");
         Candidate id = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(req.getParameter("id")));
-        System.out.println(id.getName());
         req.setAttribute("candidate", id);
         req.getRequestDispatcher("/candidate/deleteCandidate.jsp").forward(req, resp);
     }
@@ -40,6 +38,6 @@ public class DeleteServlet extends HttpServlet {
             }
         }
         PsqlStore.instOf().deleteCandidate(id);
-        resp.sendRedirect(req.getContextPath() + "/candidate/candidate.do");
+        resp.sendRedirect(req.getContextPath() + "/candidates.do");
     }
 }

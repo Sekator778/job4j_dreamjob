@@ -16,6 +16,6 @@ public class RegServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         PsqlStore.instOf().addUser(new User(name, email, password));
-        resp.sendRedirect(req.getContextPath() + "login.jsp");
+        resp.sendRedirect(req.getContextPath() + "/login.jsp");
     }
 }
