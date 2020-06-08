@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -25,14 +25,24 @@ import java.util.Map;
 public class CandidateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<String> fields;
+        fields = createFile(req);
+        PsqlStore.instOf().save(new Candidate(fields.get(0), fields.get(1)));
+        doGet(req, resp);
+    }
+
+    /**
+     * еще и апач либы подучить надо %)
+     */
+    private List<String> createFile(HttpServletRequest req) throws UnsupportedEncodingException {
         req.setCharacterEncoding("UTF-8");
+        List<String> result = new ArrayList<>();
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletContext servletContext = this.getServletConfig().getServletContext();
         File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
         factory.setRepository(repository);
         ServletFileUpload upload = new ServletFileUpload(factory);
         File newFile = null;
-        Map<String, String> fieldsCandidate = new HashMap<>();
         try {
             List<FileItem> items = upload.parseRequest(req);
             File folder = new File("images");
@@ -49,16 +59,14 @@ public class CandidateServlet extends HttpServlet {
                         e.printStackTrace();
                     }
                 } else {
-                    fieldsCandidate.put(item.getFieldName(), item.getString());
+                    result.add(item.getString());
                 }
             }
-            PsqlStore.instOf().save(new Candidate(
-                    fieldsCandidate.get("name"),
-                    newFile.getName()));
+            result.add(newFile.getName());
         } catch (FileUploadException e) {
             e.printStackTrace();
         }
-        doGet(req, resp);
+        return result;
     }
 
     @Override
