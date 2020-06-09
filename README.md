@@ -1,9 +1,12 @@
 # job4j_dreamjob
+[![Build Status](https://travis-ci.org/Sekator778/job4j_dreamjob.svg?branch=master)](https://travis-ci.org/Sekator778/job4j_dreamjob)
+
+[![codecov](https://codecov.io/gh/Sekator778/job4j_dreamjob/branch/master/graph/badge.svg)](https://codecov.io/gh/Sekator778/job4j_dreamjob)
 <h3>
 Приложение биржа работы.
 </h3>
-[![Build Status](https://travis-ci.org/Sekator778/job4j_dreamjob.svg?branch=master)](https://travis-ci.org/Sekator778/job4j_dreamjob)
-[![codecov](https://codecov.io/gh/Sekator778/job4j_dreamjob/branch/master/graph/badge.svg)](https://codecov.io/gh/Sekator778/job4j_dreamjob)
+
+
 <h4>
 В системе будут два типа пользователей: кандидаты и кадровики. Кандидаты будут публиковать резюме. Кадровики будут публиковать вакансии о работе.
 <tr>
