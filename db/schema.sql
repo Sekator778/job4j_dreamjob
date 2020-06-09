@@ -18,3 +18,4 @@ create table if not exists users
     email    text,
     password text
 );
+insert into users (name, email, password) VALUES ('admin', 'admin', 'admin');

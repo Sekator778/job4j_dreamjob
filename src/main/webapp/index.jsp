@@ -4,6 +4,7 @@
 <%@ page import="ru.job4j.dream.store.PsqlStore" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -50,10 +51,10 @@
                     <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/edit.do">Добавить вакансию</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/candidateEdit.do">Добавить кандидата</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>

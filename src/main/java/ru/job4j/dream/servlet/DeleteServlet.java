@@ -15,12 +15,14 @@ import java.util.List;
 
 
 public class DeleteServlet extends HttpServlet {
+    private final String index = "/WEB-INF/candidate/deleteCandidate.jsp";
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Candidate id = PsqlStore.instOf().findByIdCandidate(Integer.parseInt(req.getParameter("id")));
         req.setAttribute("candidate", id);
-        req.getRequestDispatcher("/candidate/deleteCandidate.jsp").forward(req, resp);
+        req.getRequestDispatcher(index).forward(req, resp);
     }
 
     @Override

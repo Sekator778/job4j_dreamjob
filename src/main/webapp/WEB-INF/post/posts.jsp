@@ -42,10 +42,10 @@
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/edit.do">Добавить вакансию</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidateEdit.do">Добавить кандидата</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> |
@@ -72,7 +72,7 @@
                     <c:forEach items="${posts}" var="post">
                         <tr>
                             <td>
-                                <a href='<c:url value="/post/edit.jsp?id=${post.id}"/>'>
+                                <a href='<c:url value="/WEB-INF/post/edit.jsp?id=${post.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
                                 <c:out value="${post.name}"/>

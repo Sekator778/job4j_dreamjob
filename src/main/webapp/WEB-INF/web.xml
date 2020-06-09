@@ -89,14 +89,23 @@
         <servlet-name>RegServlet</servlet-name>
         <url-pattern>/reg.do</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
-        <servlet-name>Hello</servlet-name>
-        <servlet-class>ru.job4j.dream.test.HelloServlet</servlet-class>
+        <servlet-name>PostEditServlet</servlet-name>
+        <servlet-class>ru.job4j.dream.servlet.PostEditServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Hello</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <servlet-name>PostEditServlet</servlet-name>
+        <url-pattern>/edit.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CandidateEditServlet</servlet-name>
+        <servlet-class>ru.job4j.dream.servlet.CandidateEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CandidateEditServlet</servlet-name>
+        <url-pattern>/candidateEdit.do</url-pattern>
     </servlet-mapping>
 
 </web-app>

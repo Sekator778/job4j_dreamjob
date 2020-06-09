@@ -23,6 +23,8 @@ import java.util.List;
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 public class CandidateServlet extends HttpServlet {
+    private final String index = "/WEB-INF/candidate/candidates.jsp";
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> fields;
@@ -72,7 +74,7 @@ public class CandidateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("candidates", PsqlStore.instOf().findAllCandidates());
-        req.getRequestDispatcher("/candidate/candidates.jsp").forward(req, resp);
+        req.getRequestDispatcher(index).forward(req, resp);
     }
 }
 

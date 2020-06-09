@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class PostServlet extends HttpServlet {
+    private final String index = "/WEB-INF/post/posts.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -28,6 +29,6 @@ public class PostServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("posts", new ArrayList<>(PsqlStore.instOf().findAllPosts()));
         req.setAttribute("user", req.getSession().getAttribute("user"));
-        req.getRequestDispatcher("/post/posts.jsp").forward(req, resp);
+        req.getRequestDispatcher(index).forward(req, resp);
     }
 }
