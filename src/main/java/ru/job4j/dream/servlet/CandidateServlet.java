@@ -27,6 +27,7 @@ public class CandidateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         List<String> fields;
         fields = createFile(req);
         PsqlStore.instOf().save(new Candidate(fields.get(0), fields.get(1)));
