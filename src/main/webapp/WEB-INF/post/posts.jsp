@@ -72,7 +72,7 @@
                     <c:forEach items="${posts}" var="post">
                         <tr>
                             <td>
-                                <a href='<c:url value="/WEB-INF/post/edit.jsp?id=${post.id}"/>'>
+                                <a href='<c:url value="/edit.do?id=${post.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
                                 <c:out value="${post.name}"/>

@@ -19,8 +19,7 @@ import java.util.*;
  */
 public class PsqlStore implements Store {
     private final BasicDataSource pool = new BasicDataSource();
-    private final String PATH_Linux = "/home/sekator/projects/job4j_dreamjob/db/schema.sql";
-    private final String PATH_Windows = "C:\\Users\\Sekator\\IdeaProjects\\job4j_dreamjob\\db\\schema.sql";
+    private final String PATH = "./././db/schema.sql";
 
     private PsqlStore() {
         Properties cfg = new Properties();
@@ -63,7 +62,7 @@ public class PsqlStore implements Store {
     private void createTable() {
         String sql = "";
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(PATH_Linux));
+            BufferedReader reader = new BufferedReader(new FileReader(PATH));
             int c;
             while ((c = reader.read()) != -1) {
                 sql += (char) c;
