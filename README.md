@@ -16,7 +16,7 @@
 
 <h3>Использованные средства:</h3>
 <ul>
-<li><i>Bootstrap - для реализации UI</i>i></li>
+<li><i>Bootstrap - для реализации UI</i></li>
 <li><i>Junit, powermock - тестирование UI</i></li>
 <li><i>J2EE - JPA, Servlet</i></li>
 <li><i>Apache Tomcat - контейнер сервлетов UI</i></li>
