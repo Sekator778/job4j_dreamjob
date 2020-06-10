@@ -3,6 +3,7 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
     <display-name>Archetype Created Web Application</display-name>
 
     <servlet>
@@ -112,10 +113,18 @@
         <servlet-name>GreetingServlet</servlet-name>
         <servlet-class>ru.job4j.servlets.GreetingServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>GreetingServlet</servlet-name>
         <url-pattern>/greet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>JsonController</servlet-name>
+        <servlet-class>ru.job4j.servlets.GreetingJsonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonController</servlet-name>
+        <url-pattern>/json</url-pattern>
     </servlet-mapping>
 
 </web-app>

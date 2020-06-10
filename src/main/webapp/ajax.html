@@ -9,6 +9,7 @@
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <!--*****************************-->
 <!--https://itchief.ru/javascript/jquery-create-add-delete-elements-->
 <!--СДЕЛАНО в  alert в JS на добавление имени перед полем ввода имени.
@@ -29,6 +30,23 @@ where id="email" add-->
         });
     }
 
+    function sendGreetingJson() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/dreamjob/json',
+            data: 'name=' + $('#exampleInputEmail1').val(),
+            dataType: 'text'
+        }).done(function (data) {
+            const json = JSON.parse(data);
+            let s = "";
+            for (let i = 0; i < json.length; i++) {
+                s += json[i];
+            }
+            $('#email').before('-- next resend ajax --' + s + '<br>');
+            alert(s);
+        })
+    }
+
 </script>
 <div class="container">
     <form>
@@ -38,8 +56,10 @@ where id="email" add-->
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                    placeholder="Enter email">
         </div>
-        <button type="button" class="btn btn-primary" onclick="sendGreeting();">Submit</button>
+        <button type="button" class="btn btn-primary" onclick="sendGreeting();">Submit with AJAX jquery</button>
+        <button type="button" class="btn btn-primary" onclick="sendGreetingJson();">Submit with Json</button>
     </form>
 </div>
+
 </body>
 </html>
