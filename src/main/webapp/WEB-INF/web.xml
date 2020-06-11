@@ -118,13 +118,4 @@
         <url-pattern>/greet</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>JsonController</servlet-name>
-        <servlet-class>ru.job4j.servlets.GreetingJsonServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>JsonController</servlet-name>
-        <url-pattern>/json</url-pattern>
-    </servlet-mapping>
-
 </web-app>
