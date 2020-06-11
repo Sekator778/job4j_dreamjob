@@ -19,7 +19,7 @@ import java.util.*;
  */
 public class PsqlStore implements Store {
     private final BasicDataSource pool = new BasicDataSource();
-    private final String PATH = "./././db/schema.sql";
+    private final String PATH = "/home/sekator/projects/job4j_dreamjob/db/schema.sql";
 
     private PsqlStore() {
         Properties cfg = new Properties();

@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label>Введите электронную почту</label>
-                        <input type="email" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email">
                     </div>
                     <div class="form-group">
                         <label>Введите пароль пользователя</label>
