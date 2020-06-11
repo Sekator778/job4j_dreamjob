@@ -9,6 +9,7 @@
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <!--*****************************-->
 <!--https://itchief.ru/javascript/jquery-create-add-delete-elements-->
 <!--СДЕЛАНО в  alert в JS на добавление имени перед полем ввода имени.
@@ -32,19 +33,26 @@ where id="email" add-->
     function sendGreetingJson() {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8081/dreamjob/greet',
+            url: 'http://localhost:8081/dreamjob/json',
             data: 'name=' + $('#exampleInputEmail1').val(),
             dataType: 'text'
         }).done(function (data) {
-            $('#email').before('-- next resend ajax with json-- ' + data + '<br>');
-            alert(data);
+            const json = JSON.parse(data);
+            let s = "";
+            for (let i = 0; i < json.length; i++) {
+                s += json[i];
+            }
+            $('#email').before('-- next resend ajax with json-- ' + s + '<br>');
+            alert(s);
         })
     }
+
 </script>
 <div class="container">
     <form id="myForm">
         <div class="form-group">
             <label for="exampleInputEmail1" id="email">Email address</label>
+
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                    placeholder="Enter email">
         </div>
