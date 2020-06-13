@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="addRow2.js"></script>
+    <script src="../jss/addRow2.js"></script>
     <style>
         body {
             background-color: azure;
@@ -21,7 +21,7 @@
     <h2>Заполните поля</h2>
     <h4>для добавления нового пользователя</h4>
     <div class="container" >
-        <form >
+        <form action="<%=request.getContextPath()%>/reg.do" method="post">
 
             <!--// name обращаемсья к #inputName-->
             <div class="form-group">
@@ -29,7 +29,7 @@
                 <input type="text" class="form-control " id="inputName" placeholder="Enter name" required>
             </div>
 
-            <!--// description обращаемсья к #inputName-->
+            <!--// description обращаемсья к #inputDescription-->
             <div class="form-group">
                 <label class="control-label" for="inputDescription" >Description</label>
                 <input type="text" class="form-control " id="inputDescription" placeholder="Enter description">
@@ -38,7 +38,7 @@
             <!--// email обращаемсья к #inputEmail-->
             <div class="form-group">
                 <label for="inputEmail" class="control-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email" data-error="Bruh, that email address is invalid" required>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email" data-error="Bruh, that email address is invalid" required name="email">
                 <div class="help-block with-errors"></div>
             </div>
 
@@ -47,7 +47,7 @@
                 <label for="inputPassword" class="control-label">Password</label>
                 <div class="form-inline row">
                     <div class="form-group col-sm-3">
-                        <input type="password" data-minlength="1" class="form-control" id="inputPassword" placeholder="Password" required>
+                        <input type="password" data-minlength="1" class="form-control" id="inputPassword" placeholder="Password" required name="password">
                         <div class="help-block">Minimum of 1 characters</div>
                     </div>
                     <div class="form-group col-sm-3">
