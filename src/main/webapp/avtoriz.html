@@ -13,6 +13,21 @@
             background-color: azure;
         }
     </style>
+        <script>
+        function addUser() {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8081/dreamjob/autoRegBoot',
+                data: 'inputName=' + $('#inputName').val(),
+                dataType: 'text'
+            }).done(function (data) {
+                $('#t2 tr:last').after(data);
+                alert(data);
+            }).fail(function (error) {
+                alert(error);
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -21,7 +36,7 @@
     <h2>Заполните поля</h2>
     <h4>для добавления нового пользователя</h4>
     <div class="container" >
-        <form action="<%=request.getContextPath()%>/reg.do" method="post">
+        <form action>
 
             <!--// name обращаемсья к #inputName-->
             <div class="form-group">
@@ -74,7 +89,6 @@
                     </label>
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="checkbox">
                     <label>
@@ -84,13 +98,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="return addUser();">Submit</button>
             </div>
-            <button type="submit" class="btn btn-primary" onclick="return addRow2();">Add Row</button>
         </form>
-
-
-
     </div>
 </div>
 <!--table table-->
@@ -106,43 +116,6 @@
         </tr>
         </thead>
         <tbody>
-<!--        <tr>-->
-<!--            <td>Bob</td>-->
-<!--            <td>fr65@gmail.com</td>-->
-<!--            <td>java first description</td>-->
-<!--            <td>Male</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>Dilon</td>-->
-<!--            <td>john@example.com</td>-->
-<!--            <td>java experience 4 year</td>-->
-<!--            <td>Male</td>-->
-
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td>Salma</td>-->
-<!--            <td>mary@example.com</td>-->
-<!--            <td>java developer + CSS</td>-->
-<!--            <td>Female</td>-->
-<!--        </tr>-->
-<!--        <tr class="info">-->
-<!--            <td>Info</td>-->
-<!--            <td>Dooley</td>-->
-<!--            <td>july@example.com</td>-->
-<!--            <td>Female</td>-->
-<!--        </tr>-->
-<!--        <tr class="danger">-->
-<!--            <td>Petr</td>-->
-<!--            <td>java guru + more</td>-->
-<!--            <td>bo@example.com</td>-->
-<!--            <td>Male</td>-->
-<!--        </tr>-->
-<!--        <tr class="active">-->
-<!--            <td>Active</td>-->
-<!--            <td>java developer + angular experience</td>-->
-<!--            <td>act@example.com</td>-->
-<!--            <td>Male</td>-->
-<!--        </tr>-->
         </tbody>
     </table>
 </div>

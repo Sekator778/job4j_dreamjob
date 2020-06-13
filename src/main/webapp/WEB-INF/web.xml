@@ -90,7 +90,7 @@
         <servlet-name>RegServlet</servlet-name>
         <url-pattern>/reg.do</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>PostEditServlet</servlet-name>
         <servlet-class>ru.job4j.dream.servlet.PostEditServlet</servlet-class>
@@ -125,6 +125,15 @@
     <servlet-mapping>
         <servlet-name>JsonController</servlet-name>
         <url-pattern>/json</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AutoHtmlReg</servlet-name>
+        <servlet-class>ru.job4j.servlets.AutoHtmlRegServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutoHtmlReg</servlet-name>
+        <url-pattern>/autoRegBoot</url-pattern>
     </servlet-mapping>
 
 </web-app>
