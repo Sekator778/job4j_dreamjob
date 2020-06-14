@@ -136,4 +136,13 @@
         <url-pattern>/autoRegBoot</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>City</servlet-name>
+        <servlet-class>ru.job4j.dream.servlet.CityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>City</servlet-name>
+        <url-pattern>/city</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -31,4 +31,11 @@ public interface Store {
     List<User> findAllUsers();
 
     User findUserByEmail(String email);
-}
+
+    List<String> findAllCities();
+
+    int findByIdCity(String city);
+
+    String findCity(int id);
+
+    }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -112,13 +113,13 @@ public class PsqlStore implements Store {
                     candidates.add(new Candidate(
                             rs.getInt("id"),
                             rs.getString("name"),
-                            rs.getString("photoId")));
+                            rs.getString("photoId"),
+                            rs.getInt("cityId")));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(candidates.toString());
         return candidates;
     }
 
@@ -172,9 +173,10 @@ public class PsqlStore implements Store {
      */
     private Candidate create(Candidate candidate) {
         try (Connection con = pool.getConnection();
-             PreparedStatement ps = con.prepareStatement("Insert into candidate (name, photoId) values (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement ps = con.prepareStatement("Insert into candidate (name, photoId, cityId) values (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, candidate.getName());
             ps.setString(2, candidate.getPhotoId());
+            ps.setInt(3, candidate.getCityId());
             ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
@@ -321,6 +323,61 @@ public class PsqlStore implements Store {
             if (u.getEmail().equals(email)) {
                 result = u;
             }
+        }
+        return result;
+    }
+
+    /**
+     * method give us List with all city
+     */
+    @Override
+    public List<String> findAllCities() {
+        List<String> list = new ArrayList<>();
+        try (Connection connection = pool.getConnection();
+             Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery("select * from cities")) {
+            while (rs.next()) {
+                list.add(rs.getString("name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
+    @Override
+    public int findByIdCity(String city) {
+        int result = 0;
+        try (Connection con = pool.getConnection();
+             PreparedStatement ps = con.prepareStatement("Select * from cities")) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    if (rs.getString("name").equals(city)) {
+                        result = rs.getInt("id");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public String findCity(int id) {
+        String result = null;
+        try (Connection con = pool.getConnection();
+             PreparedStatement ps = con.prepareStatement("Select * from cities")) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    if (rs.getInt("id") == id) {
+                        result = rs.getString("name");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return result;
     }

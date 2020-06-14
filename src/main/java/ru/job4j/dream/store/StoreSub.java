@@ -5,11 +5,13 @@ import ru.job4j.dream.model.Post;
 import ru.job4j.dream.model.User;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class StoreSub implements Store {
     private final Map<Integer, Post> postMap = new HashMap<>();
     private final Map<Integer, Candidate> candidateMap = new HashMap<>();
     private final List<User> userList = new ArrayList<>();
+    private final List<String> cityList = new ArrayList<>();
     private int idPost = 0;
     private int idCandidate = 0;
     private int idUser = 0;
@@ -84,5 +86,31 @@ public class StoreSub implements Store {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<String> findAllCities() {
+        return cityList;
+    }
+
+    @Override
+    public int findByIdCity(String city) {
+        int result = 0;
+        int i = 0;
+        AtomicInteger index = new AtomicInteger();
+        for (String sCity : cityList
+        ) {
+            i = index.incrementAndGet();
+            if (sCity.equals(city)) {
+                result = i;
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public String findCity(int id) {
+        return cityList.get(id);
     }
 }

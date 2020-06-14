@@ -24,5 +24,10 @@ public class PsqlMain {
                 for (Candidate candidate : store.findAllCandidates()) {
             System.out.println(candidate.getId() + " " + candidate.getName());
         }
+        System.out.println("=============city===============");
+        store.findAllCities().forEach(System.out::println);
+        System.out.println(store.findByIdCity("London"));
+        System.out.println(store.findCity(2));
     }
+
 }

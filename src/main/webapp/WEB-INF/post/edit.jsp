@@ -22,16 +22,7 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
-    <script>
-        function checkParams() {
-            var name = $('#name').val();
-            if(name.length > 0) {
-                $('#submit').removeAttr('disabled');
-            } else {
-                $('#submit').attr('disabled', 'disabled');
-            }
-        }
-    </script>
+
     <title>Работа мечты</title>
 </head>
 <body>
@@ -56,10 +47,10 @@
                 <form action="<%=request.getContextPath()%>/posts.do?id=<%=post.getId()%>" method="post">
                     <div class="form-group">
                         <label for="name">Имя</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<%=post.getName()%>">
+                        <input type="text" class="form-control" id="name" name="name" onchange="checkParams()"
+                               value="<%=post.getName()%>" placeholder="Enter Name">
                     </div>
-
-                    <button type="submit" class="btn btn-primary" onkeyup="checkParams()" disabled >Сохранить</button>
+                    <button type="submit" class="btn btn-primary"  id="bt" disabled>Сохранить</button>
                 </form>
             </div>
         </div>
@@ -68,5 +59,15 @@
         <a href="<%=request.getContextPath()%>/index.jsp">Home</a>
     </p>
 </div>
+<script>
+    function checkParams() {
+        var name = $('#name').val();
+        if (name.length > 0) {
+            $('#bt').removeAttr('disabled');
+        } else {
+            $('#bt').attr('disabled', 'disabled');
+        }
+    }
+</script>
 </body>
 </html>

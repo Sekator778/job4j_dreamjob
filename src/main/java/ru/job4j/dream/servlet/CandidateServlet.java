@@ -16,8 +16,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -28,18 +29,26 @@ public class CandidateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        List<String> fields;
+        Map<String, String> fields;
         fields = createFile(req);
-        PsqlStore.instOf().save(new Candidate(fields.get(0), fields.get(1)));
+        String name = fields.get("name");
+        String photoId = fields.get("foto");
+        int cityId = PsqlStore.instOf().findByIdCity(fields.get("cities"));
+        System.out.println("=======save=============");
+        System.out.println("cities: " + fields.get("cities"));
+        System.out.println("name " + name);
+        System.out.println("photoId " + photoId);
+        System.out.println("cityId " + cityId);
+        PsqlStore.instOf().save(new Candidate(name, photoId, cityId));
         doGet(req, resp);
     }
 
     /**
      * еще и апач либы подучить надо %)
      */
-    private List<String> createFile(HttpServletRequest req) throws UnsupportedEncodingException {
+    private Map<String, String> createFile(HttpServletRequest req) throws UnsupportedEncodingException {
         req.setCharacterEncoding("UTF-8");
-        List<String> result = new ArrayList<>();
+        Map<String, String> result = new HashMap<>();
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletContext servletContext = this.getServletConfig().getServletContext();
         File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
@@ -62,10 +71,10 @@ public class CandidateServlet extends HttpServlet {
                         e.printStackTrace();
                     }
                 } else {
-                    result.add(item.getString());
+                    result.put(item.getFieldName(), item.getString());
                 }
             }
-            result.add(newFile.getName());
+            result.put("foto", newFile.getName());
         } catch (FileUploadException e) {
             e.printStackTrace();
         }

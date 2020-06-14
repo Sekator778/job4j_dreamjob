@@ -108,4 +108,19 @@ public class MemStore implements Store{
     public User findUserByEmail(String email) {
         return null;
     }
+
+    @Override
+    public List<String> findAllCities() {
+        return null;
+    }
+
+    @Override
+    public int findByIdCity(String city) {
+        return 0;
+    }
+
+    @Override
+    public String findCity(int id) {
+        return null;
+    }
 }

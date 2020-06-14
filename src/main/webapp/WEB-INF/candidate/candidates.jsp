@@ -48,6 +48,7 @@
                     <tr>
                         <th scope="col">Названия</th>
                         <th scope="col">Фото</th>
+                        <th scope="col">Город</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,9 @@
                                 <a href='<c:url value="/delete?id=${candidate.id}"/>'>
                                     Delete
                                 </a>
+                            </td>
+                            <td>
+                                <c:out value="${candidate.cityId}"/>
                             </td>
                         </tr>
                     </c:forEach>

@@ -21,21 +21,47 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<%--    проверка на корректность ввода--%>
+    <%--    проверка на корректность ввода--%>
+    <%--    <script>--%>
+    <%--        function validate() {--%>
+    <%--            var name = $('#name').val();--%>
+    <%--            if (name == '') {--%>
+    <%--                alert($('#name').attr('placeholder'));--%>
+    <%--            }--%>
+    <%--        }--%>
+    <%--    </script>--%>
     <script>
-        function validate() {
+        function checkParams() {
             var name = $('#name').val();
-            if (name == '') {
-                alert($('#name').attr('placeholder'));
+            if (name.length > 0) {
+                $('#bt').removeAttr('disabled');
+            } else {
+                $('#bt').attr('disabled', 'disabled');
             }
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8081/dreamjob/city',
+                datatype: 'text'
+            }).done(function (data) {
+                var cities = data;
+                var text = "<option selected value=\"\">Select city</option>";
+                for (var i = 0; i !== cities.length; ++i) {
+                    text += "<option value='" + cities[i] + "'>" + cities[i] + "</option>";
+                }
+                document.getElementById("cities").innerHTML = text;
+            })
+        });
     </script>
     <title>Работа мечты</title>
 </head>
 <body>
 <%
     String id = request.getParameter("id");
-    Candidate candidate = new Candidate(0, "", "");
+    Candidate candidate = new Candidate(0, "", "", 1);
     if (id != null) {
         candidate = PsqlStore.instOf().findByIdCandidate(Integer.valueOf(id));
     }
@@ -53,16 +79,32 @@
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/candidates.do" method="post"
                       enctype="multipart/form-data">
+                    <%--                    field name--%>
                     <div class="form-group">
                         <label>Имя</label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Enter name"
-                               value="<%=candidate.getName()%>">
+                               value="<%=candidate.getName()%>" required>
                     </div>
+                    <%--                    field photoId--%>
                     <div class="form-group">
                         <label>Фото</label>
-                        <input type="file" class="checkbox" name="photoId" value="<%=candidate.getPhotoId()%>">
+                        <input type="file" class="checkbox" name="photoId" onchange="checkParams()"
+                               value="<%=candidate.getPhotoId()%>">
                     </div>
-                    <button type="submit" class="btn btn-primary" onclick="validate();">Сохранить</button>
+                    <%--                    field city--%>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="city">City:</label>
+                            <div class="col-sm-10" id="city">
+                                <select id="cities" class="form-control" name="cities">
+                                    <option selected value="">Select city</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                    <%--                    field Save button--%>
+
+                    <button type="submit" class="btn btn-primary" id="bt" disabled>Сохранить</button>
                 </form>
             </div>
         </div>
