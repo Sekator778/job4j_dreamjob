@@ -1,11 +1,12 @@
-CREATE TABLE if not exists cities
-(
-    city varchar(30) unique
-);
-insert into cities (city)
-values ('Moscow'),
-       ('Kiev'),
-       ('Delly'),
-       ('London'),
-       ('Boston'),
-       ('Tokyo');
+-- CREATE TABLE if not exists cities
+-- (
+--     id   serial primary key,
+--     name varchar(30) unique
+-- );
+-- insert into cities (name)
+-- values ('Moscow'),
+--        ('Kiev'),
+--        ('Delly'),
+--        ('London'),
+--        ('Boston'),
+--        ('Tokyo');
