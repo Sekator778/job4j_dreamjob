@@ -32,6 +32,7 @@
             }).fail(function (error) {
                 alert(error);
             });
+            return false;
         }
     </script>
 </head>
@@ -104,8 +105,8 @@
                 </div>
             </div>
             <div class="form-group">
+                <button type="submit" class="btn btn-primary" onclick="return addRow2();">Submit</button>
 <!--                <button type="submit" class="btn btn-primary" onclick="return addUser();">Submit</button>-->
-                <button type="submit" class="btn btn-primary" onclick="return addUser();">Submit</button>
             </div>
         </form>
     </div>

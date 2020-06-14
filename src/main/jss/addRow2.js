@@ -17,4 +17,5 @@ function addRow2() {
             + ' <td>' + sex + '</td>'
             + '</tr>');
     }
+    return false;
 }
