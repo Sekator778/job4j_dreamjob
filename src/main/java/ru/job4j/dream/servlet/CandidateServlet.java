@@ -34,11 +34,6 @@ public class CandidateServlet extends HttpServlet {
         String name = fields.get("name");
         String photoId = fields.get("foto");
         int cityId = PsqlStore.instOf().findByIdCity(fields.get("cities"));
-        System.out.println("=======save=============");
-        System.out.println("cities: " + fields.get("cities"));
-        System.out.println("name " + name);
-        System.out.println("photoId " + photoId);
-        System.out.println("cityId " + cityId);
         PsqlStore.instOf().save(new Candidate(name, photoId, cityId));
         doGet(req, resp);
     }

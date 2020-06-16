@@ -32,7 +32,6 @@ public class DeleteServlet extends HttpServlet {
         System.out.println(id);
         File file = new File("images");
         String imageName = PsqlStore.instOf().findByIdCandidate(id).getPhotoId();
-        System.out.println(imageName);
         for (File f : file.listFiles()) {
             if (f.getName().equals(imageName)) {
                 f.delete();
